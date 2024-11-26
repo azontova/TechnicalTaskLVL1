@@ -35,6 +35,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C95191E2CF667FC0046CE8A /* CreateUser */ = {
+			isa = PBXGroup;
+			children = (
+				CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */,
+			);
+			path = CreateUser;
+			sourceTree = "<group>";
+		};
 		CE9F09082CEF646D00CFA6B5 = {
 			isa = PBXGroup;
 			children = (
@@ -55,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9F09292CEF659F00CFA6B5 /* Application */,
-				CE9F092A2CEF65CA00CFA6B5 /* UserModule */,
+				CE9F092A2CEF65CA00CFA6B5 /* Modules */,
 				CE9F09282CEF658B00CFA6B5 /* Resources */,
 			);
 			path = "TechnicalTask-lvl1";
@@ -80,12 +88,12 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		CE9F092A2CEF65CA00CFA6B5 /* UserModule */ = {
+		CE9F092A2CEF65CA00CFA6B5 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */,
+				4C95191E2CF667FC0046CE8A /* CreateUser */,
 			);
-			path = UserModule;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,8 +317,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -340,8 +350,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
