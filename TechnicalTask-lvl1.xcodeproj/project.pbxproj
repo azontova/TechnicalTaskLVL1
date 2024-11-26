@@ -11,6 +11,7 @@
 		4C9519242CF668BF0046CE8A /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519232CF668BF0046CE8A /* UsersListViewController.swift */; };
 		4C9519262CF668F40046CE8A /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519252CF668F40046CE8A /* UsersListViewModel.swift */; };
 		4C9519282CF66ACC0046CE8A /* UsersListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519272CF66ACC0046CE8A /* UsersListCoordinator.swift */; };
+		4C95192B2CF66CA70046CE8A /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95192A2CF66CA70046CE8A /* StartCoordinator.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
 		CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */; };
@@ -23,6 +24,7 @@
 		4C9519232CF668BF0046CE8A /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
 		4C9519252CF668F40046CE8A /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
 		4C9519272CF66ACC0046CE8A /* UsersListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListCoordinator.swift; sourceTree = "<group>"; };
+		4C95192A2CF66CA70046CE8A /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 				4C9519252CF668F40046CE8A /* UsersListViewModel.swift */,
 			);
 			path = UsersList;
+			sourceTree = "<group>";
+		};
+		4C9519292CF66C970046CE8A /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				4C95192A2CF66CA70046CE8A /* StartCoordinator.swift */,
+			);
+			path = Start;
 			sourceTree = "<group>";
 		};
 		CE9F09082CEF646D00CFA6B5 = {
@@ -111,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				4C95191E2CF667FC0046CE8A /* CreateUser */,
+				4C9519292CF66C970046CE8A /* Start */,
 				4C9519202CF6689B0046CE8A /* UsersList */,
 			);
 			path = Modules;
@@ -192,6 +203,7 @@
 				CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */,
 				4C9519282CF66ACC0046CE8A /* UsersListCoordinator.swift in Sources */,
 				4C9519262CF668F40046CE8A /* UsersListViewModel.swift in Sources */,
+				4C95192B2CF66CA70046CE8A /* StartCoordinator.swift in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
