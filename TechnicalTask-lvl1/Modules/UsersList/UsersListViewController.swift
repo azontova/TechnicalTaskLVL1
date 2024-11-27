@@ -35,7 +35,7 @@ private extension UsersListViewController {
     
     func setup() {
         navigationItem.title = "Users"
-        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus.app"),
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus.square"),
                                         style: .plain,
                                         target: self,
                                         action: #selector(tappedAddButton))

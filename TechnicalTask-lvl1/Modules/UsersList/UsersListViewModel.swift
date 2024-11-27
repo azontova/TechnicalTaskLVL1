@@ -27,10 +27,12 @@ extension UsersListViewModel {
     
     struct Output {
         let users: AnyPublisher<[User], Never>
+        let navigateToCreateUser: AnyPublisher<Void, Never>
     }
     
     func transform(input: Input) -> Output {
         let users = apiService.fetchUsers().catch { _ in Just([]) }.eraseToAnyPublisher()
-        return Output(users: users)
+        return Output(users: users,
+                      navigateToCreateUser: input.addTapped)
     }
 }
