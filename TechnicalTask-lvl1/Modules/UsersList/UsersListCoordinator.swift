@@ -29,7 +29,8 @@ private extension UsersListCoordinator {
     
     func makeViewController() -> UIViewController? {
         guard let viewController = UIStoryboard(name: "UsersList", bundle: nil).instantiateInitialViewController() as? UsersListViewController else { return nil }
-        let viewModel = UsersListViewModel(coordinator: self)
+        let viewModel = UsersListViewModel(coordinator: self,
+                                           apiService: .init())
         viewController.configure(viewModel: viewModel)
         return viewController
     }
