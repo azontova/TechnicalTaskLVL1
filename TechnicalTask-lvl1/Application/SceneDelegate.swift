@@ -10,8 +10,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        
-        StartCoordinator(window: window).start()
+        NavigationBarAppearance.setAppearance()
+        let navigationController = UINavigationController()
+        UsersListCoordinator(window: window, presenter: navigationController).start()
     }
 }
 

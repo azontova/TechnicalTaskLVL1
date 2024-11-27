@@ -11,7 +11,10 @@
 		4C9519242CF668BF0046CE8A /* UsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519232CF668BF0046CE8A /* UsersListViewController.swift */; };
 		4C9519262CF668F40046CE8A /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519252CF668F40046CE8A /* UsersListViewModel.swift */; };
 		4C9519282CF66ACC0046CE8A /* UsersListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519272CF66ACC0046CE8A /* UsersListCoordinator.swift */; };
-		4C95192B2CF66CA70046CE8A /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95192A2CF66CA70046CE8A /* StartCoordinator.swift */; };
+		4C9519332CF7695B0046CE8A /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9519322CF7695B0046CE8A /* UserTableViewCell.xib */; };
+		4C9519342CF7695B0046CE8A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519312CF7695B0046CE8A /* UserTableViewCell.swift */; };
+		4C9519372CF7727F0046CE8A /* NavigationBarAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519362CF7727F0046CE8A /* NavigationBarAppearance.swift */; };
+		4C95193A2CF774FD0046CE8A /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519392CF774FD0046CE8A /* UIColor+Extensions.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
 		CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */; };
@@ -24,7 +27,10 @@
 		4C9519232CF668BF0046CE8A /* UsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewController.swift; sourceTree = "<group>"; };
 		4C9519252CF668F40046CE8A /* UsersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListViewModel.swift; sourceTree = "<group>"; };
 		4C9519272CF66ACC0046CE8A /* UsersListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListCoordinator.swift; sourceTree = "<group>"; };
-		4C95192A2CF66CA70046CE8A /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
+		4C9519312CF7695B0046CE8A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		4C9519322CF7695B0046CE8A /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		4C9519362CF7727F0046CE8A /* NavigationBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarAppearance.swift; sourceTree = "<group>"; };
+		4C9519392CF774FD0046CE8A /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,12 +70,37 @@
 			path = UsersList;
 			sourceTree = "<group>";
 		};
-		4C9519292CF66C970046CE8A /* Start */ = {
+		4C95192C2CF766070046CE8A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4C95192A2CF66CA70046CE8A /* StartCoordinator.swift */,
+				4C95192E2CF7661B0046CE8A /* Cells */,
 			);
-			path = Start;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4C95192E2CF7661B0046CE8A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4C9519312CF7695B0046CE8A /* UserTableViewCell.swift */,
+				4C9519322CF7695B0046CE8A /* UserTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4C9519352CF772500046CE8A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4C9519362CF7727F0046CE8A /* NavigationBarAppearance.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4C9519382CF774D50046CE8A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4C9519392CF774FD0046CE8A /* UIColor+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CE9F09082CEF646D00CFA6B5 = {
@@ -92,8 +123,11 @@
 			isa = PBXGroup;
 			children = (
 				CE9F09292CEF659F00CFA6B5 /* Application */,
+				4C9519352CF772500046CE8A /* Common */,
+				4C9519382CF774D50046CE8A /* Extensions */,
 				CE9F092A2CEF65CA00CFA6B5 /* Modules */,
 				CE9F09282CEF658B00CFA6B5 /* Resources */,
+				4C95192C2CF766070046CE8A /* Views */,
 			);
 			path = "TechnicalTask-lvl1";
 			sourceTree = "<group>";
@@ -121,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				4C95191E2CF667FC0046CE8A /* CreateUser */,
-				4C9519292CF66C970046CE8A /* Start */,
 				4C9519202CF6689B0046CE8A /* UsersList */,
 			);
 			path = Modules;
@@ -185,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9519332CF7695B0046CE8A /* UserTableViewCell.xib in Resources */,
 				CE9F091E2CEF647100CFA6B5 /* Assets.xcassets in Resources */,
 				4C9519222CF668B10046CE8A /* UsersList.storyboard in Resources */,
 				CE9F09212CEF647100CFA6B5 /* Base in Resources */,
@@ -199,11 +233,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */,
+				4C95193A2CF774FD0046CE8A /* UIColor+Extensions.swift in Sources */,
 				4C9519242CF668BF0046CE8A /* UsersListViewController.swift in Sources */,
+				4C9519372CF7727F0046CE8A /* NavigationBarAppearance.swift in Sources */,
 				CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */,
 				4C9519282CF66ACC0046CE8A /* UsersListCoordinator.swift in Sources */,
+				4C9519342CF7695B0046CE8A /* UserTableViewCell.swift in Sources */,
 				4C9519262CF668F40046CE8A /* UsersListViewModel.swift in Sources */,
-				4C95192B2CF66CA70046CE8A /* StartCoordinator.swift in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,7 +390,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -387,7 +423,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (

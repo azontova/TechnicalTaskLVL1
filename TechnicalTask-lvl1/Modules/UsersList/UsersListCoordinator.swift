@@ -18,7 +18,6 @@ final class UsersListCoordinator {
     
     func start() {
         guard let viewController = makeViewController(), let window = window else { return }
-        presenter?.isNavigationBarHidden = true
         presenter?.pushViewController(viewController, animated: true)
         window.rootViewController = presenter
     }
