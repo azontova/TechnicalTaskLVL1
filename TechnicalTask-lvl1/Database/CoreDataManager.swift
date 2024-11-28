@@ -68,10 +68,16 @@ final class CoreDataManager {
         }
     }
 
-    func deleteUser(user: UserEntity) {
-        context.delete(user)
+    func deleteUser(user: User) {
+        let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "email == %@", user.email)
+        
         do {
-            try context.save()
+            let users = try context.fetch(fetchRequest)
+            if let userEntity = users.first {
+                context.delete(userEntity)
+                try context.save()
+            }
         } catch {
             print("Error deleting user: \(error)")
         }

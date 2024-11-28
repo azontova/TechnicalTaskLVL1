@@ -13,8 +13,9 @@ final class UsersListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     private var viewModel: UsersListViewModel?
-    private let addButtonSubject = PassthroughSubject<Void, Never>()
     private var users: [User] = []
+    private let addButtonSubject = PassthroughSubject<Void, Never>()
+    private let deleteUserSubject = PassthroughSubject<User, Never>()
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -45,6 +46,7 @@ private extension UsersListViewController {
         tableView.register(UINib(nibName: "UserCell", bundle: nil),
                            forCellReuseIdentifier: "UserCell")
         tableView.dataSource = self
+        tableView.delegate = self
     }
 }
 
@@ -54,7 +56,8 @@ private extension UsersListViewController {
     
     func bind() {
         guard let viewModel = viewModel else { return }
-        let output = viewModel.transform(input: .init(addTapped: addButtonSubject.eraseToAnyPublisher()))
+        let output = viewModel.transform(input: .init(addTapped: addButtonSubject.eraseToAnyPublisher(),
+                                                      deleteTapped: deleteUserSubject.eraseToAnyPublisher()))
         output.users
             .sink { [weak self] users in
                 self?.users = users
@@ -80,5 +83,22 @@ extension UsersListViewController: UITableViewDataSource {
         let user = users[indexPath.row]
         cell.configure(with: user)
         return cell
+    }
+}
+
+// MARK: UITableViewDelegate
+
+extension UsersListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
+            guard let self else { return }
+            deleteUserSubject.send(users[indexPath.row])
+            completion(true)
+        }
+        
+        deleteAction.image = UIImage(systemName: "trash.fill")
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeActions
     }
 }

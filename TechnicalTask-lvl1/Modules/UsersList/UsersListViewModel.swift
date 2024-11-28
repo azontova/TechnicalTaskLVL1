@@ -24,6 +24,7 @@ final class UsersListViewModel: ViewModelType {
 extension UsersListViewModel {
     struct Input {
         let addTapped: AnyPublisher<Void, Never>
+        let deleteTapped: AnyPublisher<User, Never>
     }
     
     struct Output {
@@ -32,9 +33,9 @@ extension UsersListViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let users = apiService.fetchUsers()
-            .handleEvents(receiveOutput: { [unowned self] fetchedUsers in
-                self.saveUsers(fetchedUsers)
+        let fetchedUsers = apiService.fetchUsers()
+            .handleEvents(receiveOutput: { [unowned self] users in
+                self.coreDataManager.saveUsers(users)
             })
             .flatMap { _ in
                 Just(self.coreDataManager.fetchUsers())
@@ -44,16 +45,18 @@ extension UsersListViewModel {
             }
             .eraseToAnyPublisher()
         
+        let updatedUsers = input.deleteTapped
+            .handleEvents(receiveOutput: { [unowned self] user in
+                self.coreDataManager.deleteUser(user: user)
+            })
+            .flatMap { _ in
+                Just(self.coreDataManager.fetchUsers())
+            }
+            .eraseToAnyPublisher()
+        
+        let users = fetchedUsers.merge(with: updatedUsers).eraseToAnyPublisher()
+        
         return Output(users: users,
                       navigateToCreateUser: input.addTapped)
-    }
-}
-
-// MARK: Private
-
-private extension UsersListViewModel {
-    
-    private func saveUsers(_ users: [User]) {
-        coreDataManager.saveUsers(users)
     }
 }
