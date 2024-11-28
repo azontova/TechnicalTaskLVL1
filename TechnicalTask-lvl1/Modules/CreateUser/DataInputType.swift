@@ -1,5 +1,5 @@
 //
-//  UserDataInputType.swift
+//  DataInputType.swift
 //  TechnicalTask-lvl1
 //
 //  Created by User on 28/11/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum UserDataInputType {
+enum DataInputType {
     case name
     case email
     case city

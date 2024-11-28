@@ -5,14 +5,16 @@ import UIKit
 
 final class CreateUserViewController: UIViewController {
     
+    @IBOutlet private weak var nameInputView: InputTextFieldView!
+    @IBOutlet private weak var emailInputView: InputTextFieldView!
+    @IBOutlet private weak var cityInputView: InputTextFieldView!
+    @IBOutlet private weak var streetInputView: InputTextFieldView!
     @IBOutlet private weak var saveButton: UIButton!
-    @IBOutlet private weak var tableView: UITableView!
     
     private var viewModel: CreateUserViewModel?
     private var cancellables = Set<AnyCancellable>()
     
     private let backButtonSubject = PassthroughSubject<Void, Never>()
-    private let inputTypeArray: [UserDataInputType] = [.name, .email, .city, .street]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,7 @@ private extension CreateUserViewController {
     
     func setup() {
         setupNavigationBar()
-        setupTableView()
+        setupTextFieldViews()
     }
     
     func setupNavigationBar() {
@@ -45,11 +47,11 @@ private extension CreateUserViewController {
         navigationItem.leftBarButtonItem = backButton
     }
     
-    func setupTableView() {
-        tableView.register(UINib(nibName: "InputUserDataCell", bundle: nil),
-                           forCellReuseIdentifier: "InputUserDataCell")
-        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        tableView.dataSource = self
+    func setupTextFieldViews() {
+        nameInputView.configure(inputType: .name)
+        emailInputView.configure(inputType: .email)
+        cityInputView.configure(inputType: .city)
+        streetInputView.configure(inputType: .street)
     }
 }
 
@@ -68,20 +70,5 @@ private extension CreateUserViewController {
     
     @objc private func tappedBackButton() {
         self.backButtonSubject.send()
-    }
-}
-
-// MARK: UITableViewDataSource
-
-extension CreateUserViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        inputTypeArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "InputUserDataCell", for: indexPath) as? InputUserDataCell else { return UITableViewCell() }
-        let inputType = inputTypeArray[indexPath.row]
-        cell.configure(inputType: inputType)
-        return cell
     }
 }

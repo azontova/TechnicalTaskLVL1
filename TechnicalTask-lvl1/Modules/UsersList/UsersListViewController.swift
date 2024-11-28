@@ -21,7 +21,7 @@ final class UsersListViewController: UIViewController {
     private let deleteUserSubject = PassthroughSubject<User, Never>()
     
     private var isConnectionAvailable : AnyPublisher<Bool, Never> {
-        return ConnectionManager.shared.connectionStatus
+        return NetworkMonitor.shared.connectionStatus
     }
 
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ final class UsersListViewController: UIViewController {
     }
     
     deinit {
-        ConnectionManager.shared.stopMonitoring()
+        NetworkMonitor.shared.stopMonitoring()
     }
 }
 
@@ -45,7 +45,7 @@ final class UsersListViewController: UIViewController {
 private extension UsersListViewController {
     
     func setup() {
-        ConnectionManager.shared.startMonitoring()
+        NetworkMonitor.shared.startMonitoring()
         setupNavigationBar()
         setupTableView()
     }
