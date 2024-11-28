@@ -15,9 +15,10 @@ final class UsersListViewController: UIViewController {
     
     private var viewModel: UsersListViewModel?
     private var users: [User] = []
+    private var cancellables = Set<AnyCancellable>()
+    
     private let addButtonSubject = PassthroughSubject<Void, Never>()
     private let deleteUserSubject = PassthroughSubject<User, Never>()
-    private var cancellables = Set<AnyCancellable>()
     
     private var isConnectionAvailable : AnyPublisher<Bool, Never> {
         return ConnectionManager.shared.connectionStatus

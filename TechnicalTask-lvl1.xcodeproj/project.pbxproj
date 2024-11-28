@@ -26,6 +26,7 @@
 		CE78AC952CF897AF004B5153 /* CreateUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE78AC942CF897AF004B5153 /* CreateUser.storyboard */; };
 		CE78AC972CF897C0004B5153 /* CreateUserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78AC962CF897C0004B5153 /* CreateUserCoordinator.swift */; };
 		CE78AC992CF897C9004B5153 /* CreateUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78AC982CF897C9004B5153 /* CreateUserViewModel.swift */; };
+		CE78AC9B2CF8B80B004B5153 /* UIControl+Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78AC9A2CF8B80B004B5153 /* UIControl+Publishers.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
 		CE9F09192CEF646D00CFA6B5 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* CreateUserViewController.swift */; };
@@ -55,6 +56,7 @@
 		CE78AC942CF897AF004B5153 /* CreateUser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUser.storyboard; sourceTree = "<group>"; };
 		CE78AC962CF897C0004B5153 /* CreateUserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserCoordinator.swift; sourceTree = "<group>"; };
 		CE78AC982CF897C9004B5153 /* CreateUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewModel.swift; sourceTree = "<group>"; };
+		CE78AC9A2CF8B80B004B5153 /* UIControl+Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Publishers.swift"; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9519392CF774FD0046CE8A /* UIColor+Extensions.swift */,
+				CE78AC9A2CF8B80B004B5153 /* UIControl+Publishers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				4C9519262CF668F40046CE8A /* UsersListViewModel.swift in Sources */,
 				CE78AC932CF88B53004B5153 /* ConnectionManager.swift in Sources */,
 				4C95194E2CF7C98F0046CE8A /* CoreDataManager.swift in Sources */,
+				CE78AC9B2CF8B80B004B5153 /* UIControl+Publishers.swift in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

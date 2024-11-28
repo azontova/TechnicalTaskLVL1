@@ -22,6 +22,7 @@ final class UsersListViewModel: ViewModelType {
 // MARK: ViewModelType
 
 extension UsersListViewModel {
+    
     struct Input {
         let isConnectionAvailable: AnyPublisher<Bool, Never>
         let addTapped: AnyPublisher<Void, Never>
