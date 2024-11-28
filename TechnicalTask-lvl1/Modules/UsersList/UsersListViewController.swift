@@ -89,6 +89,8 @@ private extension UsersListViewController {
                 self?.noConnectionView.isHidden = isConnectionAvailable
             }
             .store(in: &cancellables)
+        
+        output.navigateToCreateUser.sink{}.store(in: &cancellables)
     }
     
     @objc private func tappedAddButton() {

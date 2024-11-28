@@ -23,9 +23,12 @@
 		4C9519562CF7CB670046CE8A /* Users.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519542CF7CB670046CE8A /* Users.xcdatamodeld */; };
 		5A66017BC58DD7801D0511A9 /* Pods_TechnicalTask_lvl1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5B75445C844C2C4A9A5243 /* Pods_TechnicalTask_lvl1.framework */; };
 		CE78AC932CF88B53004B5153 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78AC922CF88B53004B5153 /* ConnectionManager.swift */; };
+		CE78AC952CF897AF004B5153 /* CreateUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE78AC942CF897AF004B5153 /* CreateUser.storyboard */; };
+		CE78AC972CF897C0004B5153 /* CreateUserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78AC962CF897C0004B5153 /* CreateUserCoordinator.swift */; };
+		CE78AC992CF897C9004B5153 /* CreateUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78AC982CF897C9004B5153 /* CreateUserViewModel.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
-		CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */; };
+		CE9F09192CEF646D00CFA6B5 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* CreateUserViewController.swift */; };
 		CE9F091E2CEF647100CFA6B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9F091D2CEF647100CFA6B5 /* Assets.xcassets */; };
 		CE9F09212CEF647100CFA6B5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE9F09202CEF647100CFA6B5 /* Base */; };
 /* End PBXBuildFile section */
@@ -49,10 +52,13 @@
 		4C9519552CF7CB670046CE8A /* Users.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Users.xcdatamodel; sourceTree = "<group>"; };
 		7019681BE33F67686EBE10FA /* Pods-TechnicalTask-lvl1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechnicalTask-lvl1.debug.xcconfig"; path = "Target Support Files/Pods-TechnicalTask-lvl1/Pods-TechnicalTask-lvl1.debug.xcconfig"; sourceTree = "<group>"; };
 		CE78AC922CF88B53004B5153 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
+		CE78AC942CF897AF004B5153 /* CreateUser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUser.storyboard; sourceTree = "<group>"; };
+		CE78AC962CF897C0004B5153 /* CreateUserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserCoordinator.swift; sourceTree = "<group>"; };
+		CE78AC982CF897C9004B5153 /* CreateUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewModel.swift; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		CE9F09182CEF646D00CFA6B5 /* CreateUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		CE9F091D2CEF647100CFA6B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9F09202CEF647100CFA6B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9F09222CEF647100CFA6B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,7 +88,10 @@
 		4C95191E2CF667FC0046CE8A /* CreateUser */ = {
 			isa = PBXGroup;
 			children = (
-				CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */,
+				CE78AC942CF897AF004B5153 /* CreateUser.storyboard */,
+				CE78AC962CF897C0004B5153 /* CreateUserCoordinator.swift */,
+				CE9F09182CEF646D00CFA6B5 /* CreateUserViewController.swift */,
+				CE78AC982CF897C9004B5153 /* CreateUserViewModel.swift */,
 			);
 			path = CreateUser;
 			sourceTree = "<group>";
@@ -297,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE78AC952CF897AF004B5153 /* CreateUser.storyboard in Resources */,
 				CE9F091E2CEF647100CFA6B5 /* Assets.xcassets in Resources */,
 				4C9519222CF668B10046CE8A /* UsersList.storyboard in Resources */,
 				CE9F09212CEF647100CFA6B5 /* Base in Resources */,
@@ -357,12 +367,14 @@
 				4C9519562CF7CB670046CE8A /* Users.xcdatamodeld in Sources */,
 				4C9519432CF7B60C0046CE8A /* ApiService.swift in Sources */,
 				4C95194C2CF7BE630046CE8A /* Address.swift in Sources */,
+				CE78AC972CF897C0004B5153 /* CreateUserCoordinator.swift in Sources */,
 				4C95193E2CF7A9E00046CE8A /* ViewModelType.swift in Sources */,
-				CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */,
+				CE9F09192CEF646D00CFA6B5 /* CreateUserViewController.swift in Sources */,
 				4C95193A2CF774FD0046CE8A /* UIColor+Extensions.swift in Sources */,
 				4C9519492CF7BC680046CE8A /* UserCell.swift in Sources */,
 				4C9519242CF668BF0046CE8A /* UsersListViewController.swift in Sources */,
 				4C9519372CF7727F0046CE8A /* NavigationBarAppearance.swift in Sources */,
+				CE78AC992CF897C9004B5153 /* CreateUserViewModel.swift in Sources */,
 				CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */,
 				4C9519282CF66ACC0046CE8A /* UsersListCoordinator.swift in Sources */,
 				4C9519262CF668F40046CE8A /* UsersListViewModel.swift in Sources */,
