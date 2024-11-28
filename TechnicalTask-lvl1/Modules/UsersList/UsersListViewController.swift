@@ -11,12 +11,17 @@ import UIKit
 final class UsersListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var noConnectionView: UIView!
     
     private var viewModel: UsersListViewModel?
     private var users: [User] = []
     private let addButtonSubject = PassthroughSubject<Void, Never>()
     private let deleteUserSubject = PassthroughSubject<User, Never>()
     private var cancellables = Set<AnyCancellable>()
+    
+    private var isConnectionAvailable : AnyPublisher<Bool, Never> {
+        return ConnectionManager.shared.connectionStatus
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,10 @@ final class UsersListViewController: UIViewController {
     func configure(viewModel: UsersListViewModel) {
         self.viewModel = viewModel
     }
+    
+    deinit {
+        ConnectionManager.shared.stopMonitoring()
+    }
 }
 
 // MARK: Setup
@@ -35,6 +44,20 @@ final class UsersListViewController: UIViewController {
 private extension UsersListViewController {
     
     func setup() {
+        ConnectionManager.shared.startMonitoring()
+        setupNavigationBar()
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        tableView.register(UINib(nibName: "UserCell", bundle: nil),
+                           forCellReuseIdentifier: "UserCell")
+        tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 10, right: 0)
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    func setupNavigationBar() {
         navigationItem.title = "Users"
         let addButton = UIBarButtonItem(image: UIImage(systemName: "plus.square"),
                                         style: .plain,
@@ -42,11 +65,6 @@ private extension UsersListViewController {
                                         action: #selector(tappedAddButton))
         addButton.tintColor = .white
         navigationItem.rightBarButtonItem = addButton
-        
-        tableView.register(UINib(nibName: "UserCell", bundle: nil),
-                           forCellReuseIdentifier: "UserCell")
-        tableView.dataSource = self
-        tableView.delegate = self
     }
 }
 
@@ -56,12 +74,19 @@ private extension UsersListViewController {
     
     func bind() {
         guard let viewModel = viewModel else { return }
-        let output = viewModel.transform(input: .init(addTapped: addButtonSubject.eraseToAnyPublisher(),
+        let output = viewModel.transform(input: .init(isConnectionAvailable: isConnectionAvailable,
+                                                      addTapped: addButtonSubject.eraseToAnyPublisher(),
                                                       deleteTapped: deleteUserSubject.eraseToAnyPublisher()))
         output.users
             .sink { [weak self] users in
                 self?.users = users
                 self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+        
+        output.showNoConnection
+            .sink { [weak self] isConnectionAvailable in
+                self?.noConnectionView.isHidden = isConnectionAvailable
             }
             .store(in: &cancellables)
     }

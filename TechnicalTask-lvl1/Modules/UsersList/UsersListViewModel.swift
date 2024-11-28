@@ -23,6 +23,7 @@ final class UsersListViewModel: ViewModelType {
 
 extension UsersListViewModel {
     struct Input {
+        let isConnectionAvailable: AnyPublisher<Bool, Never>
         let addTapped: AnyPublisher<Void, Never>
         let deleteTapped: AnyPublisher<User, Never>
     }
@@ -30,6 +31,7 @@ extension UsersListViewModel {
     struct Output {
         let users: AnyPublisher<[User], Never>
         let navigateToCreateUser: AnyPublisher<Void, Never>
+        let showNoConnection: AnyPublisher<Bool, Never>
     }
     
     func transform(input: Input) -> Output {
@@ -56,7 +58,12 @@ extension UsersListViewModel {
         
         let users = fetchedUsers.merge(with: updatedUsers).eraseToAnyPublisher()
         
+        let showNoConnection = input.isConnectionAvailable
+            .map { $0 }
+            .eraseToAnyPublisher()
+        
         return Output(users: users,
-                      navigateToCreateUser: input.addTapped)
+                      navigateToCreateUser: input.addTapped,
+                      showNoConnection: showNoConnection)
     }
 }
