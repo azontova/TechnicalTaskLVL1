@@ -8,7 +8,7 @@
 import Alamofire
 import Combine
 
-class ApiService {
+final class ApiService {
     private let serviceURL = "https://jsonplaceholder.typicode.com/users"
 
     func fetchUsers() -> AnyPublisher<[User], Error> {
