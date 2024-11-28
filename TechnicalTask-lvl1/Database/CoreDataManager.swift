@@ -7,35 +7,64 @@
 
 import CoreData
 
-final class CoreDataService {
+final class CoreDataManager {
     
-private let context: NSManagedObjectContext
+    static let shared = CoreDataManager()
+    
+    private let persistentContainer: NSPersistentContainer
+    private let context: NSManagedObjectContext
 
-init(context: NSManagedObjectContext) {
-    self.context = context
-}
-
-func fetchUsers() -> [UserEntity]? {
-    let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-    do {
-        return try context.fetch(fetchRequest)
-    } catch {
-        print("Error fetching users: \(error)")
-        return nil
+    private init() {
+        persistentContainer = NSPersistentContainer(name: "Users")
+        persistentContainer.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError("Unable to load persistent stores: \(error)")
+            }
+        }
+        context = persistentContainer.viewContext
     }
-}
 
-    func saveUser(id: Int, name: String, email: String) {
-        let user = UserEntity(context: context)
-        user.id = Int64(id)
-        user.name = name
-        user.email = email
-        
+    func fetchUsers() -> [User] {
+        let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
-            try context.save()
+            let userEntities = try context.fetch(fetchRequest)
+            return userEntities.map { userEntity in
+                User(
+                    name: userEntity.name ?? "",
+                    email: userEntity.email ?? "",
+                    address: Address(
+                        street: userEntity.street ?? "",
+                        suite: userEntity.suite ?? "",
+                        city: userEntity.city ?? "",
+                        zipcode: userEntity.zipcode ?? ""
+                    )
+                )
+            }
         } catch {
-            print("Error saving user: \(error)")
+            print("Error fetching users: \(error)")
+            return []
+        }
+    }
+
+    func saveUsers(_ users: [User]) {
+        context.performAndWait {
+            for user in users {
+                if !userExists(with: user.email) {
+                    let userEntity = UserEntity(context: context)
+                    userEntity.name = user.name
+                    userEntity.email = user.email
+                    userEntity.city = user.address.city
+                    userEntity.zipcode = user.address.zipcode
+                    userEntity.suite = user.address.suite
+                    userEntity.street = user.address.street
+                }
+            }
+            do {
+                try context.save()
+            } catch {
+                print("Failed to save users: \(error)")
+            }
         }
     }
 
@@ -45,6 +74,19 @@ func fetchUsers() -> [UserEntity]? {
             try context.save()
         } catch {
             print("Error deleting user: \(error)")
+        }
+    }
+    
+    private func userExists(with email: String) -> Bool {
+        let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "email == %@", email)
+        fetchRequest.fetchLimit = 1
+        do {
+            let count = try context.count(for: fetchRequest)
+            return count > 0
+        } catch {
+            print("Error checking user existence: \(error)")
+            return false
         }
     }
 }

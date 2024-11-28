@@ -11,6 +11,7 @@ final class UsersListViewModel: ViewModelType {
     
     private let coordinator: UsersListCoordinator
     private let apiService: ApiService
+    private let coreDataManager = CoreDataManager.shared
 
     init(coordinator: UsersListCoordinator, apiService: ApiService) {
         self.coordinator = coordinator
@@ -31,8 +32,28 @@ extension UsersListViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let users = apiService.fetchUsers().catch { _ in Just([]) }.eraseToAnyPublisher()
+        let users = apiService.fetchUsers()
+            .handleEvents(receiveOutput: { [unowned self] fetchedUsers in
+                self.saveUsers(fetchedUsers)
+            })
+            .flatMap { _ in
+                Just(self.coreDataManager.fetchUsers())
+            }
+            .catch { _ in
+                Just(self.coreDataManager.fetchUsers())
+            }
+            .eraseToAnyPublisher()
+        
         return Output(users: users,
                       navigateToCreateUser: input.addTapped)
+    }
+}
+
+// MARK: Private
+
+private extension UsersListViewModel {
+    
+    private func saveUsers(_ users: [User]) {
+        coreDataManager.saveUsers(users)
     }
 }
