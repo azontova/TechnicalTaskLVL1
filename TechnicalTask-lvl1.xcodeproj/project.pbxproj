@@ -22,6 +22,7 @@
 		4C95194E2CF7C98F0046CE8A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95194D2CF7C98F0046CE8A /* CoreDataManager.swift */; };
 		4C9519562CF7CB670046CE8A /* Users.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519542CF7CB670046CE8A /* Users.xcdatamodeld */; };
 		4C9519792CF91F040046CE8A /* InputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9519782CF91F040046CE8A /* InputTextFieldView.swift */; };
+		4C95197B2CF92A040046CE8A /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C95197A2CF92A040046CE8A /* Validator.swift */; };
 		5A66017BC58DD7801D0511A9 /* Pods_TechnicalTask_lvl1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5B75445C844C2C4A9A5243 /* Pods_TechnicalTask_lvl1.framework */; };
 		CE78AC932CF88B53004B5153 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78AC922CF88B53004B5153 /* NetworkMonitor.swift */; };
 		CE78AC952CF897AF004B5153 /* CreateUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE78AC942CF897AF004B5153 /* CreateUser.storyboard */; };
@@ -54,6 +55,7 @@
 		4C95194D2CF7C98F0046CE8A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		4C9519552CF7CB670046CE8A /* Users.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Users.xcdatamodel; sourceTree = "<group>"; };
 		4C9519782CF91F040046CE8A /* InputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextFieldView.swift; sourceTree = "<group>"; };
+		4C95197A2CF92A040046CE8A /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		7019681BE33F67686EBE10FA /* Pods-TechnicalTask-lvl1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechnicalTask-lvl1.debug.xcconfig"; path = "Target Support Files/Pods-TechnicalTask-lvl1/Pods-TechnicalTask-lvl1.debug.xcconfig"; sourceTree = "<group>"; };
 		CE78AC922CF88B53004B5153 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		CE78AC942CF897AF004B5153 /* CreateUser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUser.storyboard; sourceTree = "<group>"; };
@@ -135,8 +137,9 @@
 		4C9519352CF772500046CE8A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CE78AC922CF88B53004B5153 /* NetworkMonitor.swift */,
 				4C9519362CF7727F0046CE8A /* NavigationBarAppearance.swift */,
+				CE78AC922CF88B53004B5153 /* NetworkMonitor.swift */,
+				4C95197A2CF92A040046CE8A /* Validator.swift */,
 				4C9519382CF774D50046CE8A /* Extensions */,
 				4C9519502CF7CA460046CE8A /* Protocols */,
 			);
@@ -388,6 +391,7 @@
 				CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */,
 				4C9519282CF66ACC0046CE8A /* UsersListCoordinator.swift in Sources */,
 				4C9519262CF668F40046CE8A /* UsersListViewModel.swift in Sources */,
+				4C95197B2CF92A040046CE8A /* Validator.swift in Sources */,
 				CE78AC932CF88B53004B5153 /* NetworkMonitor.swift in Sources */,
 				4C95194E2CF7C98F0046CE8A /* CoreDataManager.swift in Sources */,
 				CE78AC9D2CF8BDA1004B5153 /* DataInputType.swift in Sources */,

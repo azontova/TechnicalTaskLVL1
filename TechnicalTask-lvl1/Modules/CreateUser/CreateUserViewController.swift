@@ -63,9 +63,14 @@ private extension CreateUserViewController {
         guard let viewModel = viewModel else { return }
         let output = viewModel.transform(input: .init(saveTapped: saveButton.publisher(for: .touchUpInside)
             .map { _ in }.eraseToAnyPublisher(),
+                                                      inputName: nameInputView.inputText,
+                                                      inputEmail: emailInputView.inputText,
+                                                      inputCity: cityInputView.inputText,
+                                                      inputStreet: streetInputView.inputText,
                                                       backTapped: backButtonSubject.eraseToAnyPublisher()))
         
         output.back.sink{}.store(in: &cancellables)
+        output.createUser.sink{}.store(in: &cancellables)
     }
     
     @objc private func tappedBackButton() {

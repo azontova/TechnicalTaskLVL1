@@ -5,9 +5,16 @@
 //  Created by Sasha Zontova on 29.11.24.
 //
 
+import Combine
 import UIKit
 
 final class InputTextFieldView: UIView {
+    
+    private let textSubject = PassthroughSubject<String, Never>()
+    
+    var inputText: AnyPublisher<String, Never> {
+        textSubject.eraseToAnyPublisher()
+    }
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -21,6 +28,7 @@ final class InputTextFieldView: UIView {
         let textField = UITextField()
         textField.textColor = .init(rgb: 0x1C1D38)
         textField.font = .systemFont(ofSize: 16, weight: .light)
+        textField.autocorrectionType = .no
         textField.tintColor = .init(rgb: 0x1C1D38)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -58,14 +66,20 @@ final class InputTextFieldView: UIView {
     func configure(inputType: DataInputType) {
         titleLabel.text = inputType.title
         inputTextField.placeholder = inputType.placeholder
+        if inputType == .email {
+            inputTextField.autocapitalizationType = .none
+        }
     }
 }
 
 // MARK: Setup
+
 private extension InputTextFieldView {
     
     func setup() {
         backgroundColor = .clear
+        inputTextField.delegate = self
+        
         backgroundView.addSubview(inputTextField)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(backgroundView)
@@ -100,5 +114,17 @@ private extension InputTextFieldView {
             inputTextField.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor)
 
         ])
+    }
+}
+
+// MARK: UITextFieldDelegate
+
+extension InputTextFieldView: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = textField.text ?? ""
+        let inputText = (text as NSString).replacingCharacters(in: range, with: string)
+        textSubject.send(inputText)
+        return true
     }
 }
