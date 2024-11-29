@@ -22,6 +22,7 @@ final class UsersListViewModel: ViewModelType {
 // MARK: ViewModelType
 
 extension UsersListViewModel {
+    
     struct Input {
         let isConnectionAvailable: AnyPublisher<Bool, Never>
         let addTapped: AnyPublisher<Void, Never>
@@ -62,8 +63,15 @@ extension UsersListViewModel {
             .map { $0 }
             .eraseToAnyPublisher()
         
+        let navigateToCreateUser = input.addTapped
+            .map { [weak self] _ in
+                guard let self else { return }
+                coordinator.navigateToCreateUser()
+            }
+            .eraseToAnyPublisher()
+        
         return Output(users: users,
-                      navigateToCreateUser: input.addTapped,
+                      navigateToCreateUser: navigateToCreateUser,
                       showNoConnection: showNoConnection)
     }
 }

@@ -14,6 +14,7 @@ struct Address: Decodable {
     let zipcode: String
     
     var fullAddress: String {
-        return "\(city), \(street), \(suite), \(zipcode)"
+        let address = [city, street, suite, zipcode].filter { !$0.isEmpty }
+        return address.joined(separator: ", ")
     }
 }

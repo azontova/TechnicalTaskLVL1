@@ -15,12 +15,13 @@ final class UsersListViewController: UIViewController {
     
     private var viewModel: UsersListViewModel?
     private var users: [User] = []
-    private let addButtonSubject = PassthroughSubject<Void, Never>()
-    private let deleteUserSubject = PassthroughSubject<User, Never>()
     private var cancellables = Set<AnyCancellable>()
     
+    private let addButtonSubject = PassthroughSubject<Void, Never>()
+    private let deleteUserSubject = PassthroughSubject<User, Never>()
+    
     private var isConnectionAvailable : AnyPublisher<Bool, Never> {
-        return ConnectionManager.shared.connectionStatus
+        return NetworkMonitor.shared.connectionStatus
     }
 
     override func viewDidLoad() {
@@ -35,7 +36,7 @@ final class UsersListViewController: UIViewController {
     }
     
     deinit {
-        ConnectionManager.shared.stopMonitoring()
+        NetworkMonitor.shared.stopMonitoring()
     }
 }
 
@@ -44,7 +45,7 @@ final class UsersListViewController: UIViewController {
 private extension UsersListViewController {
     
     func setup() {
-        ConnectionManager.shared.startMonitoring()
+        NetworkMonitor.shared.startMonitoring()
         setupNavigationBar()
         setupTableView()
     }
@@ -89,6 +90,8 @@ private extension UsersListViewController {
                 self?.noConnectionView.isHidden = isConnectionAvailable
             }
             .store(in: &cancellables)
+        
+        output.navigateToCreateUser.sink{}.store(in: &cancellables)
     }
     
     @objc private func tappedAddButton() {

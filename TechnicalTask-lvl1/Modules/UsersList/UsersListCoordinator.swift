@@ -21,6 +21,11 @@ final class UsersListCoordinator {
         presenter?.pushViewController(viewController, animated: true)
         window.rootViewController = presenter
     }
+    
+    func navigateToCreateUser() {
+        let createUser = CreateUserCoordinator(presenter: presenter)
+        createUser.start()
+    }
 }
 
 // MARK: Private
