@@ -81,3 +81,11 @@ struct RegexRule<T>: ValidationRule {
         self.regex = regex
     }
 }
+
+enum ValidationError: Error {
+    case invalidName
+    case invalidEmail
+    case invalidCity
+    case alreadyExistEmail
+    case invalidStreet
+}
