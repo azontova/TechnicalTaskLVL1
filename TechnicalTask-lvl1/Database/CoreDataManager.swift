@@ -83,7 +83,7 @@ final class CoreDataManager {
         }
     }
     
-    private func userExists(with email: String) -> Bool {
+    func userExists(with email: String) -> Bool {
         let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "email == %@", email)
         fetchRequest.fetchLimit = 1

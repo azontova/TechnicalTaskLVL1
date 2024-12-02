@@ -13,7 +13,7 @@ protocol ValidationRule {
 
 struct IsNameRule: ValidationRule {
     
-    let string: String
+    private let string: String
     
     var isValid: Bool {
         RegexRule(value: string, regex: "^[a-zA-Z'-]{2,30}$").isValid
@@ -26,7 +26,7 @@ struct IsNameRule: ValidationRule {
 
 struct IsEmailRule: ValidationRule {
     
-    let string: String
+    private let string: String
     
     var isValid: Bool {
         RegexRule(value: string, regex: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}").isValid
@@ -39,11 +39,10 @@ struct IsEmailRule: ValidationRule {
 
 struct IsCityRule: ValidationRule {
     
-    let string: String
+    private let string: String
     
     var isValid: Bool {
         guard !string.isEmpty else { return true }
-        
         return RegexRule(value: string, regex: "^[a-zA-Z\\s-]{2,50}$").isValid
     }
     
@@ -54,11 +53,10 @@ struct IsCityRule: ValidationRule {
 
 struct IsStreetRule: ValidationRule {
     
-    let string: String
+    private let string: String
     
     var isValid: Bool {
         guard !string.isEmpty else { return true }
-        
         return RegexRule(value: string, regex: "^[a-zA-Z0-9\\s-]{2,100}$").isValid
     }
     
@@ -69,8 +67,8 @@ struct IsStreetRule: ValidationRule {
 
 struct RegexRule<T>: ValidationRule {
     
-    let value: T
-    let regex: String
+    private let value: T
+    private let regex: String
     
     var isValid: Bool {
         NSPredicate(format: "SELF MATCHES[c] %@", regex).evaluate(with: value)
@@ -88,4 +86,22 @@ enum ValidationError: Error {
     case invalidCity
     case alreadyExistEmail
     case invalidStreet
+    case none
+    
+    var title: String {
+        switch self {
+        case .invalidName:
+            return "Invalid name"
+        case .invalidEmail:
+            return "Invalid email"
+        case .invalidCity:
+            return "Invalid city"
+        case .alreadyExistEmail:
+            return "User with this email already exists"
+        case .invalidStreet:
+            return "Invalid street"
+        case .none:
+            return ""
+        }
+    }
 }

@@ -55,12 +55,12 @@ private extension CreateUserViewController {
     }
 }
 
-// MARK: Private
+// MARK: Binding
 
 private extension CreateUserViewController {
     
     func bind() {
-        guard let viewModel = viewModel else { return }
+        guard let viewModel else { return }
         let output = viewModel.transform(input: .init(saveTapped: saveButton.publisher(for: .touchUpInside)
             .map { _ in }.eraseToAnyPublisher(),
                                                       inputName: nameInputView.inputText,
@@ -71,9 +71,32 @@ private extension CreateUserViewController {
         
         output.back.sink{}.store(in: &cancellables)
         output.createUser.sink{}.store(in: &cancellables)
+        output.validationError.sink { [weak self] errors in
+            guard let self else { return }
+            self.showValidationErrors(errors)
+        }
+        .store(in: &cancellables)
     }
+}
+
+// MARK: Private
+
+private extension CreateUserViewController {
     
     @objc private func tappedBackButton() {
         self.backButtonSubject.send()
+    }
+    
+    func showValidationErrors(_ errors: [ValidationError]) {
+        let inputViews: [InputTextFieldView: ValidationError] = [
+            nameInputView: errors.first { $0 == .invalidName } ?? .none,
+            emailInputView: errors.first { $0 == .invalidEmail || $0 == .alreadyExistEmail } ?? .none,
+            cityInputView: errors.first { $0 == .invalidCity } ?? .none,
+            streetInputView: errors.first { $0 == .invalidStreet } ?? .none
+        ]
+        
+        inputViews.forEach { inputView, error in
+            inputView.showError(error)
+        }
     }
 }

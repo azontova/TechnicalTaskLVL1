@@ -69,31 +69,38 @@ private extension UsersListViewController {
     }
 }
 
-// MARK: Private
+// MARK: Binding
 
 private extension UsersListViewController {
     
     func bind() {
-        guard let viewModel = viewModel else { return }
+        guard let viewModel else { return }
         let output = viewModel.transform(input: .init(isConnectionAvailable: isConnectionAvailable,
                                                       addTapped: addButtonSubject.eraseToAnyPublisher(),
                                                       deleteTapped: deleteUserSubject.eraseToAnyPublisher()))
         output.users
             .sink { [weak self] users in
-                self?.users = users
-                self?.tableView.reloadData()
+                guard let self else { return }
+                self.users = users
+                self.tableView.reloadData()
             }
             .store(in: &cancellables)
         
         output.showNoConnection
             .sink { [weak self] isConnectionAvailable in
-                self?.noConnectionView.isHidden = isConnectionAvailable
+                guard let self else { return }
+                self.noConnectionView.isHidden = isConnectionAvailable
             }
             .store(in: &cancellables)
         
         output.navigateToCreateUser.sink{}.store(in: &cancellables)
     }
-    
+}
+
+// MARK: Private
+
+private extension UsersListViewController {
+
     @objc private func tappedAddButton() {
         self.addButtonSubject.send()
     }

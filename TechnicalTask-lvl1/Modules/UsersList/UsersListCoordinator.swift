@@ -8,22 +8,22 @@
 import UIKit
 
 final class UsersListCoordinator {
-    private weak var presenter: UINavigationController?
+    private weak var presenterController: UINavigationController?
     private weak var window: UIWindow?
     
     init(window: UIWindow?, presenter: UINavigationController?) {
         self.window = window
-        self.presenter = presenter
+        self.presenterController = presenter
     }
     
     func start() {
         guard let viewController = makeViewController(), let window = window else { return }
-        presenter?.pushViewController(viewController, animated: true)
-        window.rootViewController = presenter
+        presenterController?.pushViewController(viewController, animated: true)
+        window.rootViewController = presenterController
     }
     
     func navigateToCreateUser() {
-        let createUser = CreateUserCoordinator(presenter: presenter)
+        let createUser = CreateUserCoordinator(presenter: presenterController)
         createUser.start()
     }
 }

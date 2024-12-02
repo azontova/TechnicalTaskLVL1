@@ -10,7 +10,7 @@ import UIKit
 
 final class InputTextFieldView: UIView {
     
-    private let textSubject = PassthroughSubject<String, Never>()
+    private let textSubject = CurrentValueSubject<String, Never>("")
     
     var inputText: AnyPublisher<String, Never> {
         textSubject.eraseToAnyPublisher()
@@ -33,6 +33,15 @@ final class InputTextFieldView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.textColor = .red
+        label.numberOfLines = 1
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -46,6 +55,8 @@ final class InputTextFieldView: UIView {
     private let backgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
+        view.layer.borderColor = UIColor.clear.cgColor
+        view.layer.borderWidth = 1
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -70,6 +81,11 @@ final class InputTextFieldView: UIView {
             inputTextField.autocapitalizationType = .none
         }
     }
+    
+    func showError(_ error: ValidationError) {
+        errorLabel.text = error == . none ? nil : error.title
+        backgroundView.layer.borderColor = error == . none ? UIColor.clear.cgColor : UIColor.red.cgColor
+    }
 }
 
 // MARK: Setup
@@ -83,6 +99,7 @@ private extension InputTextFieldView {
         backgroundView.addSubview(inputTextField)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(backgroundView)
+        stackView.addArrangedSubview(errorLabel)
         addSubview(stackView)
 
         setBackgroundViewConstraints()
