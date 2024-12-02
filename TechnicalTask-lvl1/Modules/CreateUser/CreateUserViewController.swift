@@ -5,6 +5,7 @@ import UIKit
 
 final class CreateUserViewController: UIViewController {
     
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var nameInputView: InputTextFieldView!
     @IBOutlet private weak var emailInputView: InputTextFieldView!
     @IBOutlet private weak var cityInputView: InputTextFieldView!
@@ -26,6 +27,10 @@ final class CreateUserViewController: UIViewController {
     func configure(viewModel: CreateUserViewModel) {
         self.viewModel = viewModel
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 // MARK: Setup
@@ -35,6 +40,7 @@ private extension CreateUserViewController {
     func setup() {
         setupNavigationBar()
         setupTextFieldViews()
+        setupNotifications()
     }
     
     func setupNavigationBar() {
@@ -52,6 +58,15 @@ private extension CreateUserViewController {
         emailInputView.configure(inputType: .email)
         cityInputView.configure(inputType: .city)
         streetInputView.configure(inputType: .street)
+    }
+    
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
 }
 
@@ -83,10 +98,6 @@ private extension CreateUserViewController {
 
 private extension CreateUserViewController {
     
-    @objc private func tappedBackButton() {
-        self.backButtonSubject.send()
-    }
-    
     func showValidationErrors(_ errors: [ValidationError]) {
         let inputViews: [InputTextFieldView: ValidationError] = [
             nameInputView: errors.first { $0 == .invalidName } ?? .none,
@@ -98,5 +109,26 @@ private extension CreateUserViewController {
         inputViews.forEach { inputView, error in
             inputView.showError(error)
         }
+    }
+    
+    @objc private func tappedBackButton() {
+        self.backButtonSubject.send()
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            let keyboardHeight = keyboardFrame.height
+            var contentInset = scrollView.contentInset
+            contentInset.bottom = keyboardHeight
+            scrollView.contentInset = contentInset
+            scrollView.scrollIndicatorInsets = contentInset
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        let contentInset = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
     }
 }

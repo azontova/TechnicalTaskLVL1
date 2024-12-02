@@ -48,7 +48,7 @@ extension CreateUserViewModel {
             .combineLatest(userDetails)
             .map { [weak self] _, userDetails -> [ValidationError] in
                 guard let self else { return [] }
-                var errors: [ValidationError] = [
+                let errors: [ValidationError] = [
                     self.validateName(userDetails.0),
                     self.validateEmail(userDetails.1),
                     self.validateCity(userDetails.2),
@@ -60,7 +60,7 @@ extension CreateUserViewModel {
             .eraseToAnyPublisher()
                 
         let createdUser = validationError
-            .filter { $0.filter { $0 != .none }.isEmpty }
+            .filter { $0.allSatisfy { $0 == .none } }
             .combineLatest(userDetails)
             .map { _, userDetails in
                 User(name: userDetails.0,

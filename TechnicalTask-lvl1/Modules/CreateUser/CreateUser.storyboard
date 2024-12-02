@@ -123,6 +123,7 @@
                         <outlet property="emailInputView" destination="g8T-sb-QQZ" id="aKN-Ya-PI5"/>
                         <outlet property="nameInputView" destination="Vsv-b1-QcQ" id="oax-mx-grd"/>
                         <outlet property="saveButton" destination="Gb8-fo-mfk" id="WEY-fF-vQc"/>
+                        <outlet property="scrollView" destination="q90-lP-720" id="lMY-Np-8c7"/>
                         <outlet property="streetInputView" destination="0gH-SL-J7X" id="GDP-TZ-wpP"/>
                     </connections>
                 </viewController>
