@@ -11,7 +11,7 @@ protocol ValidationRule {
     var isValid: Bool { get }
 }
 
-struct IsNameRule: ValidationRule {
+struct NameRule: ValidationRule {
     
     private let string: String
     
@@ -24,7 +24,7 @@ struct IsNameRule: ValidationRule {
     }
 }
 
-struct IsEmailRule: ValidationRule {
+struct EmailRule: ValidationRule {
     
     private let string: String
     
@@ -37,7 +37,7 @@ struct IsEmailRule: ValidationRule {
     }
 }
 
-struct IsCityRule: ValidationRule {
+struct CityRule: ValidationRule {
     
     private let string: String
     
@@ -51,7 +51,7 @@ struct IsCityRule: ValidationRule {
     }
 }
 
-struct IsStreetRule: ValidationRule {
+struct StreetRule: ValidationRule {
     
     private let string: String
     

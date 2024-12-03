@@ -5,6 +5,11 @@ import UIKit
 
 final class CreateUserViewController: UIViewController {
     
+    enum Constants {
+        static let title = "Create User"
+        static let backImageTitle = "arrow.backward"
+    }
+    
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var nameInputView: InputTextFieldView!
     @IBOutlet private weak var emailInputView: InputTextFieldView!
@@ -44,8 +49,8 @@ private extension CreateUserViewController {
     }
     
     func setupNavigationBar() {
-        navigationItem.title = "Create User"
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"),
+        navigationItem.title = Constants.title
+        let backButton = UIBarButtonItem(image: UIImage(systemName: Constants.backImageTitle),
                                         style: .plain,
                                         target: self,
                                         action: #selector(tappedBackButton))

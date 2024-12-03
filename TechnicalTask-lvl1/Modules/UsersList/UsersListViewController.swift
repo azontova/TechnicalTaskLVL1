@@ -10,6 +10,13 @@ import UIKit
 
 final class UsersListViewController: UIViewController {
     
+    enum Constants {
+        static let title = "Users"
+        static let addImageTitle = "plus.square"
+        static let deleteImageTitle = "trash.fill"
+        static let nibName = "UserCell"
+    }
+    
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var noConnectionView: UIView!
     
@@ -51,16 +58,16 @@ private extension UsersListViewController {
     }
     
     func setupTableView() {
-        tableView.register(UINib(nibName: "UserCell", bundle: nil),
-                           forCellReuseIdentifier: "UserCell")
+        tableView.register(UINib(nibName: Constants.nibName, bundle: nil),
+                           forCellReuseIdentifier: UserCell.identifier)
         tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 10, right: 0)
         tableView.dataSource = self
         tableView.delegate = self
     }
     
     func setupNavigationBar() {
-        navigationItem.title = "Users"
-        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus.square"),
+        navigationItem.title = Constants.title
+        let addButton = UIBarButtonItem(image: UIImage(systemName: Constants.addImageTitle),
                                         style: .plain,
                                         target: self,
                                         action: #selector(tappedAddButton))
@@ -114,7 +121,7 @@ extension UsersListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.identifier, for: indexPath) as? UserCell else { return UITableViewCell() }
         let user = users[indexPath.row]
         cell.configure(with: user)
         return cell
@@ -132,7 +139,7 @@ extension UsersListViewController: UITableViewDelegate {
             completion(true)
         }
         
-        deleteAction.image = UIImage(systemName: "trash.fill")
+        deleteAction.image = UIImage(systemName: Constants.deleteImageTitle)
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
         return swipeActions
     }

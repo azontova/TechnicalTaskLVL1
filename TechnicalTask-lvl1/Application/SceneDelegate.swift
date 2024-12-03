@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         NavigationBarAppearance.setAppearance()
         let navigationController = UINavigationController()
-        UsersListCoordinator(window: window, presenter: navigationController).start()
+        UsersListCoordinator(window: window, navigationController: navigationController).start()
     }
 }
 

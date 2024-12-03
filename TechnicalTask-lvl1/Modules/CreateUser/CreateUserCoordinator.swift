@@ -9,19 +9,19 @@ import UIKit
 
 final class CreateUserCoordinator {
     
-    private weak var presenterController: UINavigationController?
+    private weak var navigationController: UINavigationController?
     
-    init(presenter: UINavigationController?) {
-        self.presenterController = presenter
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
     }
     
     func start() {
         guard let viewController = makeViewController() else { return }
-        presenterController?.pushViewController(viewController, animated: true)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func back() {
-        presenterController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }
 
