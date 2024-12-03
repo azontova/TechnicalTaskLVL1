@@ -86,7 +86,6 @@ enum ValidationError: Error {
     case invalidCity
     case alreadyExistEmail
     case invalidStreet
-    case none
     
     var title: String {
         switch self {
@@ -100,8 +99,6 @@ enum ValidationError: Error {
             return "User with this email already exists"
         case .invalidStreet:
             return "Invalid street"
-        case .none:
-            return ""
         }
     }
 }

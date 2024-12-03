@@ -81,11 +81,6 @@ final class InputTextFieldView: UIView {
             inputTextField.autocapitalizationType = .none
         }
     }
-    
-    func showError(_ error: ValidationError) {
-        errorLabel.text = error == . none ? nil : error.title
-        backgroundView.layer.borderColor = error == . none ? UIColor.clear.cgColor : UIColor.red.cgColor
-    }
 }
 
 // MARK: Setup
