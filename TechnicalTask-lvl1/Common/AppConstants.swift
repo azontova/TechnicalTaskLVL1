@@ -16,6 +16,7 @@ enum AppConstants {
     enum Colors {
         static let nightBlue = UIColor.init(rgb: 0x1C1D38)
         static let yellow = UIColor.init(rgb: 0xEABE41)
+        static let lightRed = UIColor.init(rgb: 0xE46868)
     }
     
     static let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"

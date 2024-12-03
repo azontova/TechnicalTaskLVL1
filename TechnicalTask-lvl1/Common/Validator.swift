@@ -7,83 +7,38 @@
 
 import Foundation
 
-protocol ValidationRule {
-    var isValid: Bool { get }
+protocol Validator {
+    func validate(value: String, inputType: DataInputType) -> Bool
 }
 
-struct NameRule: ValidationRule {
+struct DefaultValidator: Validator {
     
-    private let string: String
-    
-    var isValid: Bool {
-        RegexRule(value: string, regex: AppConstants.nameRegex).isValid
-    }
-    
-    init(string: String) {
-        self.string = string
-    }
-}
-
-struct EmailRule: ValidationRule {
-    
-    private let string: String
-    
-    var isValid: Bool {
-        RegexRule(value: string, regex: AppConstants.emailRegex).isValid
-    }
-    
-    init(string: String) {
-        self.string = string
+    func validate(value: String, inputType: DataInputType) -> Bool {
+        let regexRule: String
+        switch inputType {
+        case .name:
+            regexRule = AppConstants.nameRegex
+        case .email:
+            regexRule = AppConstants.emailRegex
+        case .city:
+            regexRule = AppConstants.cityRegex
+        case .street:
+            regexRule = AppConstants.streetRegex
+        }
+        
+        return value.containsRegexMatch(regexRule)
     }
 }
 
-struct CityRule: ValidationRule {
-    
-    private let string: String
-    
-    var isValid: Bool {
-        guard !string.isEmpty else { return true }
-        return RegexRule(value: string, regex: AppConstants.cityRegex).isValid
-    }
-    
-    init(string: String) {
-        self.string = string
-    }
-}
-
-struct StreetRule: ValidationRule {
-    
-    private let string: String
-    
-    var isValid: Bool {
-        guard !string.isEmpty else { return true }
-        return RegexRule(value: string, regex: AppConstants.streetRegex).isValid
-    }
-    
-    init(string: String) {
-        self.string = string
-    }
-}
-
-struct RegexRule<T>: ValidationRule {
-    
-    private let value: T
-    private let regex: String
-    
-    var isValid: Bool {
-        NSPredicate(format: "SELF MATCHES[c] %@", regex).evaluate(with: value)
-    }
-    
-    init(value: T, regex: String) {
-        self.value = value
-        self.regex = regex
-    }
-}
-
-enum ValidationError: Error {
+enum ValidationError {
     case invalidName
     case invalidEmail
     case invalidCity
-    case alreadyExistEmail
     case invalidStreet
+}
+
+enum AppError {
+    case unknowned
+    case validation(Set<ValidationError>)
+    case alreadyExistEmail
 }

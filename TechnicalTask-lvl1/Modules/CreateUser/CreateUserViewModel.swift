@@ -11,9 +11,11 @@ final class CreateUserViewModel: ViewModelType {
     
     private let coordinator: CreateUserCoordinator
     private let coreDataManager = CoreDataManager.shared
+    private let validator: Validator
 
-    init(coordinator: CreateUserCoordinator) {
+    init(coordinator: CreateUserCoordinator, validator: Validator) {
         self.coordinator = coordinator
+        self.validator = validator
     }
 }
 

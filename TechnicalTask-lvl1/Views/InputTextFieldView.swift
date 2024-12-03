@@ -37,8 +37,9 @@ final class InputTextFieldView: UIView {
     private let errorLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .regular)
-        label.textColor = .red
+        label.textColor = AppConstants.Colors.lightRed
         label.numberOfLines = 1
+        label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -68,7 +69,7 @@ final class InputTextFieldView: UIView {
         setup()
     }
     
-    required  init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         
         setup()
@@ -94,21 +95,20 @@ private extension InputTextFieldView {
         backgroundView.addSubview(inputTextField)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(backgroundView)
-        stackView.addArrangedSubview(errorLabel)
         addSubview(stackView)
+        addSubview(errorLabel)
 
         setBackgroundViewConstraints()
         setInputTextFieldConstraints()
         setStackViewConstraints()
+        setErrorLabelConstraints()
     }
     
     func setStackViewConstraints() {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
@@ -125,6 +125,15 @@ private extension InputTextFieldView {
             inputTextField.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10.0),
             inputTextField.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor)
 
+        ])
+    }
+    
+    func setErrorLabelConstraints() {
+        NSLayoutConstraint.activate([
+            errorLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 2),
+            errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            errorLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

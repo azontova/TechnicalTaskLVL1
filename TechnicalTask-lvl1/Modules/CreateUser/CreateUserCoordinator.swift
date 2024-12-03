@@ -33,7 +33,8 @@ private extension CreateUserCoordinator {
             name: AppConstants.StoryboardScene.createUserStoryboard,
             bundle: nil
         ).instantiateInitialViewController() as? CreateUserViewController else { return nil }
-        let viewModel = CreateUserViewModel(coordinator: self)
+        let viewModel = CreateUserViewModel(coordinator: self,
+                                            validator: DefaultValidator())
         viewController.configure(viewModel: viewModel)
         return viewController
     }
