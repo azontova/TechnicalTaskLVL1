@@ -29,7 +29,10 @@ final class CreateUserCoordinator {
 private extension CreateUserCoordinator {
     
     func makeViewController() -> UIViewController? {
-        guard let viewController = UIStoryboard(name: "CreateUser", bundle: nil).instantiateInitialViewController() as? CreateUserViewController else { return nil }
+        guard let viewController = UIStoryboard(
+            name: AppConstants.StoryboardScene.createUserStoryboard,
+            bundle: nil
+        ).instantiateInitialViewController() as? CreateUserViewController else { return nil }
         let viewModel = CreateUserViewModel(coordinator: self)
         viewController.configure(viewModel: viewModel)
         return viewController

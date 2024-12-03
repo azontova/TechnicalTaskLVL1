@@ -8,22 +8,14 @@
 import Alamofire
 import Combine
 
-final class ApiService {
-    private let serviceURL = "https://jsonplaceholder.typicode.com/users"
-
+final class ApiService: ApiServiceProtocol {
+   
     func fetchUsers() -> AnyPublisher<[User], Error> {
-        return Future<[User], Error> { promise in
-            AF.request(self.serviceURL)
+        AF.request(AppConstants.serviceURL)
                 .validate()
-                .responseDecodable(of: [User].self) { response in
-                    switch response.result {
-                    case .success(let users):
-                        promise(.success(users))
-                    case .failure(let error):
-                        promise(.failure(error))
-                    }
-                }
-        }
-        .eraseToAnyPublisher()
+                .publishDecodable(type: [User].self)
+                .value()
+                .mapError { $0 as Error } 
+                .eraseToAnyPublisher()
     }
 }

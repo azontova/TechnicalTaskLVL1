@@ -19,17 +19,17 @@ final class InputTextFieldView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = .init(rgb: 0x1C1D38)
+        label.textColor = AppConstants.Colors.nightBlue
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let inputTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .init(rgb: 0x1C1D38)
+        textField.textColor = AppConstants.Colors.nightBlue
         textField.font = .systemFont(ofSize: 16, weight: .light)
         textField.autocorrectionType = .no
-        textField.tintColor = .init(rgb: 0x1C1D38)
+        textField.tintColor = AppConstants.Colors.nightBlue
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()

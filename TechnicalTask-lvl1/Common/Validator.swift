@@ -16,7 +16,7 @@ struct NameRule: ValidationRule {
     private let string: String
     
     var isValid: Bool {
-        RegexRule(value: string, regex: "^[a-zA-Z'-]{2,30}$").isValid
+        RegexRule(value: string, regex: AppConstants.nameRegex).isValid
     }
     
     init(string: String) {
@@ -29,7 +29,7 @@ struct EmailRule: ValidationRule {
     private let string: String
     
     var isValid: Bool {
-        RegexRule(value: string, regex: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}").isValid
+        RegexRule(value: string, regex: AppConstants.emailRegex).isValid
     }
     
     init(string: String) {
@@ -43,7 +43,7 @@ struct CityRule: ValidationRule {
     
     var isValid: Bool {
         guard !string.isEmpty else { return true }
-        return RegexRule(value: string, regex: "^[a-zA-Z\\s-]{2,50}$").isValid
+        return RegexRule(value: string, regex: AppConstants.cityRegex).isValid
     }
     
     init(string: String) {
@@ -57,7 +57,7 @@ struct StreetRule: ValidationRule {
     
     var isValid: Bool {
         guard !string.isEmpty else { return true }
-        return RegexRule(value: string, regex: "^[a-zA-Z0-9\\s-]{2,100}$").isValid
+        return RegexRule(value: string, regex: AppConstants.streetRegex).isValid
     }
     
     init(string: String) {
