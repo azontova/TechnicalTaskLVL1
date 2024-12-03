@@ -114,15 +114,15 @@ private extension InputTextFieldView {
     
     func setBackgroundViewConstraints() {
         NSLayoutConstraint.activate([
-            backgroundView.heightAnchor.constraint(equalToConstant: 45)
+            backgroundView.heightAnchor.constraint(equalToConstant: 45.0)
         ])
     }
     
     func setInputTextFieldConstraints() {
         NSLayoutConstraint.activate([
             inputTextField.topAnchor.constraint(equalTo: backgroundView.topAnchor),
-            inputTextField.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10),
-            inputTextField.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10),
+            inputTextField.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 10.0),
+            inputTextField.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -10.0),
             inputTextField.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor)
 
         ])

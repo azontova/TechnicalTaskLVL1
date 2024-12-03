@@ -86,19 +86,4 @@ enum ValidationError: Error {
     case invalidCity
     case alreadyExistEmail
     case invalidStreet
-    
-    var title: String {
-        switch self {
-        case .invalidName:
-            return "Invalid name"
-        case .invalidEmail:
-            return "Invalid email"
-        case .invalidCity:
-            return "Invalid city"
-        case .alreadyExistEmail:
-            return "User with this email already exists"
-        case .invalidStreet:
-            return "Invalid street"
-        }
-    }
 }

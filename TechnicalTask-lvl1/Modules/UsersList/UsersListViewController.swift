@@ -19,12 +19,14 @@ final class UsersListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var noConnectionView: UIView!
+    @IBOutlet private weak var loadingIndicatorView: UIActivityIndicatorView!
     
     private var viewModel: UsersListViewModel?
     private var users: [User] = []
     private var cancellables = Set<AnyCancellable>()
     
     private let addButtonSubject = PassthroughSubject<Void, Never>()
+    private let refreshDataSubject = PassthroughSubject<Void, Never>()
     private let deleteUserSubject = PassthroughSubject<User, Never>()
     
     private var isConnectionAvailable : AnyPublisher<Bool, Never> {
@@ -63,6 +65,10 @@ private extension UsersListViewController {
         tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 10, right: 0)
         tableView.dataSource = self
         tableView.delegate = self
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     func setupNavigationBar() {
@@ -83,6 +89,7 @@ private extension UsersListViewController {
     func bind() {
         guard let viewModel else { return }
         let output = viewModel.transform(input: .init(isConnectionAvailable: isConnectionAvailable,
+                                                      refreshData: refreshDataSubject.eraseToAnyPublisher(),
                                                       addTapped: addButtonSubject.eraseToAnyPublisher(),
                                                       deleteTapped: deleteUserSubject.eraseToAnyPublisher()))
         output.users
@@ -100,6 +107,20 @@ private extension UsersListViewController {
             }
             .store(in: &cancellables)
         
+        output.isLoading
+            .sink { [weak self] isLoading in
+                guard let self else { return }
+                if isLoading {
+                    self.loadingIndicatorView.isHidden = false
+                    self.loadingIndicatorView.startAnimating()
+                } else {
+                    self.loadingIndicatorView.isHidden = true
+                    self.loadingIndicatorView.stopAnimating()
+                    self.tableView.refreshControl?.endRefreshing()
+                }
+            }
+            .store(in: &cancellables)
+        
         output.navigateToCreateUser.sink{}.store(in: &cancellables)
     }
 }
@@ -109,7 +130,11 @@ private extension UsersListViewController {
 private extension UsersListViewController {
 
     @objc private func tappedAddButton() {
-        self.addButtonSubject.send()
+        addButtonSubject.send()
+    }
+    
+    @objc private func refreshData() {
+        refreshDataSubject.send()
     }
 }
 
