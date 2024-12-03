@@ -1,0 +1,32 @@
+
+# User-specific files
+UserInterfaceState.xcuserstate  
+*.xcuserstate                  
+
+# Xcode metadata
+.DS_Store                      
+xcuserdata/                     
+DerivedData/                    
+
+# Build files
+build/                          
+
+# Pod dependencies
+Pods/                                   
+
+# Breakpoints
+Breakpoints_v2.xcbkptlist       
+
+# Workspace settings
+Valenta.xcworkspace/           
+*.xcworkspace                  
+
+# Schemes and configurations
+xcschememanagement/.plist       
+
+# Templates 
+Valenta/Templates/                             
+
+# Fastlane 
+fastlane/report.xml            
+fastlane/preview.html           
