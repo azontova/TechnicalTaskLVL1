@@ -9,19 +9,19 @@ import UIKit
 
 final class CreateUserCoordinator {
     
-    private weak var presenter: UINavigationController?
+    private weak var navigationController: UINavigationController?
     
-    init(presenter: UINavigationController?) {
-        self.presenter = presenter
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
     }
     
     func start() {
         guard let viewController = makeViewController() else { return }
-        presenter?.pushViewController(viewController, animated: true)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func back() {
-        presenter?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -29,8 +29,12 @@ final class CreateUserCoordinator {
 private extension CreateUserCoordinator {
     
     func makeViewController() -> UIViewController? {
-        guard let viewController = UIStoryboard(name: "CreateUser", bundle: nil).instantiateInitialViewController() as? CreateUserViewController else { return nil }
-        let viewModel = CreateUserViewModel(coordinator: self)
+        guard let viewController = UIStoryboard(
+            name: AppConstants.StoryboardScene.createUserStoryboard,
+            bundle: nil
+        ).instantiateInitialViewController() as? CreateUserViewController else { return nil }
+        let viewModel = CreateUserViewModel(coordinator: self,
+                                            validator: DefaultValidator())
         viewController.configure(viewModel: viewModel)
         return viewController
     }

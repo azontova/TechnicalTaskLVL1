@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujF-C3-9UU">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="674"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="596"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Provide all info to save user:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ie-ZR-dxl">
                                                 <rect key="frame" x="20" y="30" width="353" height="26"/>
@@ -32,35 +32,35 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gH-SL-J7X" customClass="InputTextFieldView" customModule="TechnicalTask_lvl1" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="349" width="353" height="65"/>
+                                                <rect key="frame" x="20" y="362" width="353" height="78"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="65" id="bk7-sE-xky"/>
+                                                    <constraint firstAttribute="height" constant="78" id="bk7-sE-xky"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6l-aX-fAR" customClass="InputTextFieldView" customModule="TechnicalTask_lvl1" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="260" width="353" height="65"/>
+                                                <rect key="frame" x="20" y="268" width="353" height="78"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="65" id="y9K-Hg-qBD"/>
+                                                    <constraint firstAttribute="height" constant="78" id="y9K-Hg-qBD"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8T-sb-QQZ" customClass="InputTextFieldView" customModule="TechnicalTask_lvl1" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="171" width="353" height="65"/>
+                                                <rect key="frame" x="20" y="174" width="353" height="78"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="65" id="Mzs-Tx-dNz"/>
+                                                    <constraint firstAttribute="height" constant="78" id="Mzs-Tx-dNz"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vsv-b1-QcQ" customClass="InputTextFieldView" customModule="TechnicalTask_lvl1" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="82" width="353" height="65"/>
+                                                <rect key="frame" x="20" y="80" width="353" height="78"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="65" id="2Pa-e1-HYN"/>
+                                                    <constraint firstAttribute="height" constant="78" id="2Pa-e1-HYN"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gb8-fo-mfk">
-                                                <rect key="frame" x="129" y="564" width="135" height="50"/>
+                                                <rect key="frame" x="129" y="520" width="135" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="NgF-Zy-PJm"/>
@@ -82,18 +82,18 @@
                                             <constraint firstAttribute="trailing" secondItem="0gH-SL-J7X" secondAttribute="trailing" constant="20" id="04y-kC-69s"/>
                                             <constraint firstItem="0gH-SL-J7X" firstAttribute="leading" secondItem="ujF-C3-9UU" secondAttribute="leading" constant="20" id="2gs-Uy-t0z"/>
                                             <constraint firstItem="g8T-sb-QQZ" firstAttribute="leading" secondItem="ujF-C3-9UU" secondAttribute="leading" constant="20" id="3Si-tE-Y1L"/>
-                                            <constraint firstItem="Vsv-b1-QcQ" firstAttribute="top" secondItem="9ie-ZR-dxl" secondAttribute="bottom" constant="26" id="4g7-Dd-aXe"/>
+                                            <constraint firstItem="Vsv-b1-QcQ" firstAttribute="top" secondItem="9ie-ZR-dxl" secondAttribute="bottom" constant="24" id="4g7-Dd-aXe"/>
                                             <constraint firstItem="b6l-aX-fAR" firstAttribute="leading" secondItem="ujF-C3-9UU" secondAttribute="leading" constant="20" id="6Uy-eJ-gYP"/>
                                             <constraint firstAttribute="trailing" secondItem="b6l-aX-fAR" secondAttribute="trailing" constant="20" id="7Zc-qI-f2O"/>
                                             <constraint firstAttribute="trailing" secondItem="Vsv-b1-QcQ" secondAttribute="trailing" constant="20" id="J0l-ZK-N1y"/>
-                                            <constraint firstItem="Gb8-fo-mfk" firstAttribute="top" secondItem="0gH-SL-J7X" secondAttribute="bottom" constant="150" id="UmE-SV-QqG"/>
-                                            <constraint firstItem="g8T-sb-QQZ" firstAttribute="top" secondItem="Vsv-b1-QcQ" secondAttribute="bottom" constant="24" id="Ypy-9C-kZg"/>
+                                            <constraint firstItem="Gb8-fo-mfk" firstAttribute="top" secondItem="0gH-SL-J7X" secondAttribute="bottom" constant="80" id="UmE-SV-QqG"/>
+                                            <constraint firstItem="g8T-sb-QQZ" firstAttribute="top" secondItem="Vsv-b1-QcQ" secondAttribute="bottom" constant="16" id="Ypy-9C-kZg"/>
                                             <constraint firstAttribute="trailing" secondItem="9ie-ZR-dxl" secondAttribute="trailing" constant="20" id="ehc-nw-SHm"/>
-                                            <constraint firstItem="b6l-aX-fAR" firstAttribute="top" secondItem="g8T-sb-QQZ" secondAttribute="bottom" constant="24" id="fnD-BH-tqr"/>
+                                            <constraint firstItem="b6l-aX-fAR" firstAttribute="top" secondItem="g8T-sb-QQZ" secondAttribute="bottom" constant="16" id="fnD-BH-tqr"/>
                                             <constraint firstItem="9ie-ZR-dxl" firstAttribute="top" secondItem="ujF-C3-9UU" secondAttribute="top" constant="30" id="img-PN-Qvn"/>
                                             <constraint firstItem="Gb8-fo-mfk" firstAttribute="centerX" secondItem="ujF-C3-9UU" secondAttribute="centerX" id="kDz-KO-WVD"/>
-                                            <constraint firstItem="0gH-SL-J7X" firstAttribute="top" secondItem="b6l-aX-fAR" secondAttribute="bottom" constant="24" id="npd-E6-XaR"/>
-                                            <constraint firstAttribute="bottom" secondItem="Gb8-fo-mfk" secondAttribute="bottom" constant="60" id="nu4-D6-Luh"/>
+                                            <constraint firstItem="0gH-SL-J7X" firstAttribute="top" secondItem="b6l-aX-fAR" secondAttribute="bottom" constant="16" id="npd-E6-XaR"/>
+                                            <constraint firstAttribute="bottom" secondItem="Gb8-fo-mfk" secondAttribute="bottom" constant="26" id="nu4-D6-Luh"/>
                                             <constraint firstItem="Vsv-b1-QcQ" firstAttribute="leading" secondItem="ujF-C3-9UU" secondAttribute="leading" constant="20" id="xxk-0m-Lgk"/>
                                             <constraint firstItem="9ie-ZR-dxl" firstAttribute="leading" secondItem="ujF-C3-9UU" secondAttribute="leading" constant="20" id="zLH-XP-WrJ"/>
                                             <constraint firstAttribute="trailing" secondItem="g8T-sb-QQZ" secondAttribute="trailing" constant="20" id="zhX-Ya-Bon"/>
@@ -123,6 +123,7 @@
                         <outlet property="emailInputView" destination="g8T-sb-QQZ" id="aKN-Ya-PI5"/>
                         <outlet property="nameInputView" destination="Vsv-b1-QcQ" id="oax-mx-grd"/>
                         <outlet property="saveButton" destination="Gb8-fo-mfk" id="WEY-fF-vQc"/>
+                        <outlet property="scrollView" destination="q90-lP-720" id="lMY-Np-8c7"/>
                         <outlet property="streetInputView" destination="0gH-SL-J7X" id="GDP-TZ-wpP"/>
                     </connections>
                 </viewController>

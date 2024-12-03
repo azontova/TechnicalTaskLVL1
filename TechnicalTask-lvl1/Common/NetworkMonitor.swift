@@ -11,8 +11,9 @@ import Reachability
 final class NetworkMonitor {
     
     static let shared = NetworkMonitor()
+    private let connectionStatusRelay = PassthroughSubject<Bool, Never>()
+    
     private var reachability: Reachability?
-    private var connectionStatusRelay = PassthroughSubject<Bool, Never>()
     
     var connectionStatus: AnyPublisher<Bool, Never> {
         connectionStatusRelay.eraseToAnyPublisher()

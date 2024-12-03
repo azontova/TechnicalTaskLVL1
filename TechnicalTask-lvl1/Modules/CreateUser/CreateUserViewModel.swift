@@ -11,9 +11,11 @@ final class CreateUserViewModel: ViewModelType {
     
     private let coordinator: CreateUserCoordinator
     private let coreDataManager = CoreDataManager.shared
+    private let validator: Validator
 
-    init(coordinator: CreateUserCoordinator) {
+    init(coordinator: CreateUserCoordinator, validator: Validator) {
         self.coordinator = coordinator
+        self.validator = validator
     }
 }
 
@@ -58,12 +60,13 @@ extension CreateUserViewModel {
             .eraseToAnyPublisher()
         
         let back = input.backTapped
-            .map { [weak self] _ in
-                guard let self = self else { return }
+            .map { [weak self] in
+                guard let self else { return }
                 self.coordinator.back()
             }
             .eraseToAnyPublisher()
            
-        return Output(back: back, createUser: createdUser)
+        return Output(back: back,
+                      createUser: createdUser)
     }
 }

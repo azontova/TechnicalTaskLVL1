@@ -5,6 +5,12 @@ import UIKit
 
 final class CreateUserViewController: UIViewController {
     
+    enum Constants {
+        static let title = "Create User"
+        static let backImageTitle = "arrow.backward"
+    }
+    
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var nameInputView: InputTextFieldView!
     @IBOutlet private weak var emailInputView: InputTextFieldView!
     @IBOutlet private weak var cityInputView: InputTextFieldView!
@@ -26,6 +32,10 @@ final class CreateUserViewController: UIViewController {
     func configure(viewModel: CreateUserViewModel) {
         self.viewModel = viewModel
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 // MARK: Setup
@@ -35,11 +45,12 @@ private extension CreateUserViewController {
     func setup() {
         setupNavigationBar()
         setupTextFieldViews()
+        setupNotifications()
     }
     
     func setupNavigationBar() {
-        navigationItem.title = "Create User"
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"),
+        navigationItem.title = Constants.title
+        let backButton = UIBarButtonItem(image: UIImage(systemName: Constants.backImageTitle),
                                         style: .plain,
                                         target: self,
                                         action: #selector(tappedBackButton))
@@ -53,14 +64,23 @@ private extension CreateUserViewController {
         cityInputView.configure(inputType: .city)
         streetInputView.configure(inputType: .street)
     }
+    
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
 }
 
-// MARK: Private
+// MARK: Binding
 
 private extension CreateUserViewController {
     
     func bind() {
-        guard let viewModel = viewModel else { return }
+        guard let viewModel else { return }
         let output = viewModel.transform(input: .init(saveTapped: saveButton.publisher(for: .touchUpInside)
             .map { _ in }.eraseToAnyPublisher(),
                                                       inputName: nameInputView.inputText,
@@ -72,8 +92,30 @@ private extension CreateUserViewController {
         output.back.sink{}.store(in: &cancellables)
         output.createUser.sink{}.store(in: &cancellables)
     }
-    
-    @objc private func tappedBackButton() {
+}
+
+// MARK: Private
+
+private extension CreateUserViewController {
+
+    @objc func tappedBackButton() {
         self.backButtonSubject.send()
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            let keyboardHeight = keyboardFrame.height
+            var contentInset = scrollView.contentInset
+            contentInset.bottom = keyboardHeight
+            scrollView.contentInset = contentInset
+            scrollView.scrollIndicatorInsets = contentInset
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        let contentInset = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
     }
 }

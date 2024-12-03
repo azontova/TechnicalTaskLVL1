@@ -8,22 +8,22 @@
 import UIKit
 
 final class UsersListCoordinator {
-    private weak var presenter: UINavigationController?
+    private weak var navigationController: UINavigationController?
     private weak var window: UIWindow?
     
-    init(window: UIWindow?, presenter: UINavigationController?) {
+    init(window: UIWindow?, navigationController: UINavigationController?) {
         self.window = window
-        self.presenter = presenter
+        self.navigationController = navigationController
     }
     
     func start() {
         guard let viewController = makeViewController(), let window = window else { return }
-        presenter?.pushViewController(viewController, animated: true)
-        window.rootViewController = presenter
+        navigationController?.pushViewController(viewController, animated: true)
+        window.rootViewController = navigationController
     }
     
     func navigateToCreateUser() {
-        let createUser = CreateUserCoordinator(presenter: presenter)
+        let createUser = CreateUserCoordinator(navigationController: navigationController)
         createUser.start()
     }
 }
@@ -33,7 +33,10 @@ final class UsersListCoordinator {
 private extension UsersListCoordinator {
     
     func makeViewController() -> UIViewController? {
-        guard let viewController = UIStoryboard(name: "UsersList", bundle: nil).instantiateInitialViewController() as? UsersListViewController else { return nil }
+        guard let viewController = UIStoryboard(
+            name: AppConstants.StoryboardScene.usersListStoryboard,
+            bundle: nil
+        ).instantiateInitialViewController() as? UsersListViewController else { return nil }
         let viewModel = UsersListViewModel(coordinator: self,
                                            apiService: .init())
         viewController.configure(viewModel: viewModel)
